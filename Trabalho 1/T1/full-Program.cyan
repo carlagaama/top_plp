@@ -1,0 +1,145 @@
+/*
+  Carla Simões Gama 613843
+  T1 - TALP
+*/
+
+package main
+
+import cyan.io
+import data
+import teste
+
+/*   tenho uma sugestão na hora de fazer as operações com os complexos: use reflexão. Se a operação está na string op, use simplesmente
+      let Complexo res = left `op: right;
+não é preciso usar if´s para selecionar a operação.
+
+cd cyan
+saci.exe "C:\cyan\top-avancados-plp\T1\p.pyan" -cyanlang lib -javalib lib/javalib -args .\top-avancados-plp\T1\teste.txt
+*/
+
+object Program
+func run: Array<String> args {
+  Out println: '#' * 60;
+  Out println: "                      TRABALHO 1";
+  Out println: '#' * 60;
+  "" println;
+  var String arrayResultados = "";
+
+  let arquivo = args[0];
+  var Tuple<Double, Double> tupla;
+  var i = 0;
+  var Complexo primeiro_complexo;
+  var Complexo segundo_complexo;
+  var String operacao;
+  var String t;
+  Teste teste;
+  let Program p = Program new;
+  InTextFile
+  open: arquivo
+  foreach: { (: String line :)
+    if i < 2 {
+      tupla = (self getDoubles: line);
+      /* tupla println; */
+      if i == 0 {
+        "Entrada: " println;
+        primeiro_complexo = Complexo (tupla f1, tupla f2 verDouble);
+        p impressao: tupla;
+      }
+      else if i == 1 {
+        segundo_complexo = Complexo (tupla f1, tupla f2 verDouble);
+        p impressao: tupla;
+        /* segundo_complexo println; */
+      }
+      i = i + 1;
+    }
+    
+    else if i == 2 {
+      /* i == 2 é pq é o operador */
+      "" println;
+      operacao = line trim;
+      let Complexo resultado = primeiro_complexo `operacao: segundo_complexo;
+      t = "Resultado: " ++ resultado asString;
+      t println;
+      var String local = resultado asString;
+      arrayResultados = arrayResultados ++ local ++ "\n";
+      "" println;
+
+      /*
+      resultado getReal println;
+      resultado getImaginario println;
+      */
+      i = 0;
+    }
+  }
+  catch: ExceptionStr;
+  OutTextFile
+       open: n"C:\cyan\top-avancados-plp\T1\resultado.txt"
+       write: arrayResultados
+  catch: CatchExceptionIOMessage;
+
+}
+
+func impressao: Tuple<Double, Double> tupla {
+  var String t = tupla f1 ++ " + " ++ tupla f2 ++ "i";
+  t println;
+
+}
+func getDoubles: String s -> Tuple<Double, Double> {
+  var first = "";
+  var second = "";
+  var Int i = 0;
+  while i < s size {
+    if s[i] != ' ' && s[i] != '\t' { break }
+    ++i
+  }
+  while i < s size {
+    if s[i] == ' ' || s[i] == '\t' { break }
+    first = first ++ s[i];
+    ++i
+  }
+  while i < s size {
+    if s[i] != ' ' && s[i] != '\t' { break }
+    ++i
+  }
+  while i < s size {
+    if s[i] == ' ' || s[i] == '\t' { break }
+    second = second ++ s[i];
+    ++i
+  }
+  notNil one = first asDouble, two = second asDouble {
+    return [. one, two .]
+  }
+  var segundo = second asDouble;
+  if segundo == 0.0 {
+    throw: ExceptionStr("0.0 eh imaginario");
+  }
+  else {
+    throw: ExceptionStr("Error in casting $s to two Doubles")
+  }
+}
+ @pushCompilationContextStatement(pp11, pp) 
+
+    // Methods added by the compiler
+    override    func prototype -> Program {
+        @javacode{* return prototype;
+        *}
+    } 
+ @popCompilationContext(pp11) 
+ @pushCompilationContextStatement(new274, new) 
+    // Methods added by the compiler
+
+    override    func clone -> Program {
+        @javacode<<*
+        try {
+            return (_Program ) this.clone(); 
+        } catch (CloneNotSupportedException e) { }
+        return null;
+        *>>    } 
+    func init { } 
+
+    func new -> Program {
+        @javacode<**< 
+            return new _Program();        >**>
+    }
+ @popCompilationContext(new274) 
+end 

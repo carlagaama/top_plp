@@ -1,0 +1,10 @@
+package dados
+
+object IdadeNegativa extends CyException
+	@init(age)
+
+	Int age
+	func getAge -> Int {
+		return age;
+	}
+end

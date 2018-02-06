@@ -1,0 +1,3 @@
+cd cyan
+
+saci.exe "C:\cyan\top-avancados-plp\T1\p.pyan" -cyanlang lib -javalib lib/javalib

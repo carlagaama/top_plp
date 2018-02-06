@@ -1,0 +1,16 @@
+<A_person prototype="Person"> 
+ <PersonName>
+      "Isaac Newton"
+  <\PersonName>
+ <PersonAge>
+      24
+  <\PersonAge>
+ <PersonCity>
+<CityOfResidence prototype="City"> 
+ <nameOfCity>
+      "Cambridge"
+  <\nameOfCity>
+<\CityOfResidence>
+  <\PersonCity>
+<\A_person>
+<\A_person>

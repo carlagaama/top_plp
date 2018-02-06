@@ -1,0 +1,11 @@
+package dados
+
+object IdadeInvalida extends CyException
+	@init(age)
+
+	Int age
+	
+	func getAge -> Int {
+		return age;
+	}
+end

@@ -1,0 +1,17 @@
+package excecao
+import dados
+
+object FactoryCatch
+	func getCatchSoft -> CatchAgeErrorSoft {
+		return CatchAgeErrorSoft();
+	}
+
+	func getCatchHard -> CatchAgeErrorHard {
+		return CatchAgeErrorHard();
+	}
+
+	func getCatchDefault -> CatchAgeErrorSoft {
+		return CatchAgeErrorSoft();
+	}
+
+end

@@ -1,0 +1,11 @@
+package data
+
+@feature(xmlRoot, "CityOfResidence")
+object City
+
+	func init: String cityName { self.cityName = cityName }
+	func getCityName -> String = cityName;
+	
+	@feature(xmlElement, "nameOfCity")
+	String cityName;
+end

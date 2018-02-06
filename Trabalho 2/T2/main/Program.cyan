@@ -1,0 +1,79 @@
+package main
+import cyan.io
+import excecao
+import dados
+/*
+	Carla Simões Gama. RA: 613843
+	TÓPICOS AVANÇADOS DE PARADIGMAS DE LINGUAGENS DE PROGRAMAÇÃO
+	UFSCar Sorocaba
+
+	executar:
+	cd cyan
+	saci.exe "C:\cyan\top-avancados-plp\T2\project.pyan" -cyanlang lib -javalib lib/javalib
+*/
+
+object Program
+
+func run {
+	var FactoryCatch fab_erros = FactoryCatch ();
+
+	{
+		Out println: (self ageDescription: 500);
+	}
+	catch: fab_erros getCatchDefault;
+	
+	{
+		Out println: (self ageDescription: -150);
+	}
+	catch: fab_erros getCatchDefault;
+
+	{
+		Out println: (self ageDescription: 0);
+	}
+	catch: fab_erros getCatchDefault;
+
+	{
+		Out println: (self ageDescription: 10);
+	}
+	catch: fab_erros getCatchSoft;
+
+	{
+		Out println: (self ageDescription: 68);
+	}
+	catch: CatchAgeErrorSoft;
+
+	{
+		Out println: (self ageDescription: 240);
+	}
+	catch: fab_erros getCatchHard;
+
+	/*Garantindo que não mostrará a próxima mensagem, pois o getCatchHard para o programa quando é chamado.*/
+	Out println: "Sera que essa msg sera lida?";
+
+}
+
+func ageDescription: Int age -> String {
+	if age < 0 {
+		throw: IdadeNegativa(age);
+	}
+	else if age <= 3 {
+		return "bebe"
+	}
+	else if age <= 12 {
+		return "crianca"
+	}
+	else if age <= 19 {
+		return "adolescente"
+	}
+	else if age <= 65 {
+		return "adulto"
+	}
+	else if age < 127 {
+		return "idoso"
+	}
+	else {
+		throw: IdadeInvalida(age);
+	}
+}
+
+end

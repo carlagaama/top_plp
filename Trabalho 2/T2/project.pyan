@@ -1,0 +1,6 @@
+program at "C:\cyan\top-avancados-plp\T2"
+
+    package main at "C:\cyan\top-avancados-plp\T2\main"
+    package cyan.io at "C:\cyan\lib\cyan\io"
+    package dados at "C:\cyan\top-avancados-plp\T2\dados"
+    package excecao at "C:\cyan\top-avancados-plp\T2\excecao"

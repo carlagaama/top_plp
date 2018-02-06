@@ -1,0 +1,18 @@
+package data
+
+@feature(xmlRoot, "A_person")
+object Person
+	@init(name, age, city)
+	func getName -> String = name;
+	func getAge -> Int = age;
+	func getCity -> City = city;
+
+	@feature(xmlElement, "PersonName")
+	String name
+
+	@feature(xmlElement, "PersonAge")
+	Int age
+	
+	@feature(xmlElement, "PersonCity")
+	City city
+end

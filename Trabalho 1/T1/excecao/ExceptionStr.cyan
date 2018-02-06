@@ -1,0 +1,7 @@
+package excecao
+
+public object ExceptionStr (String message) extends CyException
+	func eval: (ImgZero e) {
+	Out println: (e imaginario);
+}
+end

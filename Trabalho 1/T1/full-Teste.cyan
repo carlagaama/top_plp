@@ -1,0 +1,53 @@
+package teste
+
+import data
+
+object Teste
+	func teste {
+		assert Complexo(1.0, 2.0) equal: Complexo(3.0 - 2.0, 1.0 + 0.5 + 0.5);
+		let zeroi = Complexo(0.0);
+		let oneOne = Complexo(1.0, 1.0);
+		assert (zeroi*zeroi + Complexo(1.0, 1.0)) equal: oneOne;	
+
+		assert Complexo(1.0, 1.0) == Complexo(0.0, 0.0);
+		assert Complexo(1.0, 1.0) === Complexo(0.0, 0.0);
+		assert Complexo(9.0, 1.0) != Complexo(0.0, 0.0);
+		assert algo eq: oneOne;
+		assert algo neq: oneOne;
+		assert algo == zeroi;
+		assert algo equal: zeroi;
+
+		let algo = Complexo (5.0, 8.3);
+		let real = algo getReal;
+		let imaginario = algo getImaginario;
+
+
+	}	
+
+
+ @pushCompilationContextStatement(pp10, pp) 
+
+    // Methods added by the compiler
+    override    func prototype -> Teste {
+        @javacode{* return prototype;
+        *}
+    } 
+ @popCompilationContext(pp10) 
+ @pushCompilationContextStatement(new271, new) 
+    // Methods added by the compiler
+
+    override    func clone -> Teste {
+        @javacode<<*
+        try {
+            return (_Teste ) this.clone(); 
+        } catch (CloneNotSupportedException e) { }
+        return null;
+        *>>    } 
+    func init { } 
+
+    func new -> Teste {
+        @javacode<**< 
+            return new _Teste();        >**>
+    }
+ @popCompilationContext(new271) 
+end

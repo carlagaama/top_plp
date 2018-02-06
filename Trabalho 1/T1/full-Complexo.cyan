@@ -1,0 +1,246 @@
+package data
+import cyan.io
+
+object Complexo
+
+    Double nro_real;
+    Double nro_imaginario;
+    var Double resultado_real = 0.0;
+    var Double resultado_imaginario = 0.0;
+
+/* self == this */
+    func init: Double real, Double imaginario {
+        self.nro_real = real;
+        self.nro_imaginario = imaginario;
+        /*"tô entrando no init" println; */
+    }
+
+    func init: Double real {
+        self.nro_real = real;
+        self.nro_imaginario = 0.0;
+    }
+
+    func init {
+       self.nro_real = 0.0;
+       self.nro_imaginario = 0.0;
+    }
+    /*func get -> Int { return value }
+    func set: (Int other) { value = other }
+    */
+    func getReal -> Double { return nro_real }
+    func getImaginario -> Double { return nro_imaginario }
+    
+    
+    /*Métodos soma, subtração e multiplicação*/
+    /*
+    func + (Int other) -> Int
+    func - (Int other) -> Int
+    func * (Int other) -> Int
+    */
+   
+    func + (Dyn other) -> Complexo {
+      resultado_real = self getReal + other getReal;
+      resultado_imaginario = self getImaginario + other getImaginario;
+      return Complexo(resultado_real, resultado_imaginario);
+    }
+
+    func * (Dyn other) -> Complexo {
+      resultado_real = self getReal * other getReal;
+      resultado_imaginario = self getImaginario * other getImaginario;
+      return Complexo(resultado_real, resultado_imaginario);
+    }
+
+    func - (Dyn other) -> Complexo {
+      resultado_real = self getReal - other getReal;
+      resultado_imaginario = self getImaginario - other getImaginario;
+      return Complexo(resultado_real, resultado_imaginario);
+    }
+
+    /*Os seguintes metodos herdados de Any devem ser redefinidos: asString, ==, ===, !=, eq:,
+    neq:. Use override antes de func na redefinicao.
+    */
+    override
+    func asString -> String {
+      return self getReal ++ " + " ++ self getImaginario ++ "i";
+    }
+    /*
+      func === (Dyn other) -> Boolean { 
+     return self == other 
+      }
+    */
+    override
+    func == (Dyn other) -> Boolean {
+      type other
+        case Complexo tipoC {
+          assert true;
+        }
+        else {
+          throw: ExceptionStr("Tipos diferentes!")
+        }
+
+      if self getReal == other getImaginario {
+        if self getImaginario == other getImaginario { 
+          return true;
+        }
+        else {
+          return false;
+        }
+      }
+      else {
+        return false;
+      }
+    }
+
+    override
+    func === (Dyn other) -> Boolean {
+      return self == other;
+    }
+
+    override
+    func != (Dyn other) -> Boolean {
+      type other
+        case Complexo tipoC {
+          assert true;
+        }
+        else {
+          throw: ExceptionStr("Tipos diferentes!")
+        }
+
+      if self getReal != other getReal {
+        return true;
+      }
+      if self getImaginario != other getImaginario {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+
+    /*     func eq:  (Dyn other) -> Boolean { 
+      @javacode<*< 
+        return new CyBoolean(_other == this);
+      >*>
+    }
+
+    func neq: (Dyn other) -> Boolean { 
+      @javacode<*< 
+        return new CyBoolean(_other != this);
+       >*>
+    }
+     */
+    override
+    func eq: (Dyn other) -> Boolean {
+      type other
+        case Complexo tipoC {
+          assert true;
+        }
+        else {
+          throw: ExceptionStr("Tipos diferentes!")
+        }
+
+      if self == other {
+        return true
+      }
+      else {
+        return false;
+      }
+    }
+
+    override
+    func neq: (Dyn other) -> Boolean {
+      type other
+        case Complexo tipoC {
+          assert true;
+        }
+        else {
+          throw: ExceptionStr("Tipos diferentes!")
+        }
+
+      if self != other {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+
+   /* suponho que o prototipo chama-se "Complexo"
+  func equal: Complexo other -> Boolean { ... }
+  func |> Function<Complexo, Complexo> f -> Double {
+      return f eval: self
+  }
+  */
+
+    func verDouble -> Double {
+      if self.nro_imaginario == 0.0 {
+        return self.getReal;
+      }
+      else {
+        throw: ExceptionStr("Complex number can not be converted to Double.");
+        return self.getReal;
+      } 
+    }
+
+    func equal: Complexo other -> Boolean {
+      type other
+        case Complexo tipoC {
+          assert true;
+        }
+        else {
+          throw: ExceptionStr("Tipos diferentes!")
+        }
+
+      if self getReal equal: other getReal {
+        if self getImaginario equal: other getImaginario {
+          return true;
+        }
+        else {
+          return false;
+        }
+      }
+      else {
+        return false;
+      }
+    }
+
+    func |> Function<Complexo, Complexo> f -> Complexo {
+      return f eval: self
+    }
+ @pushCompilationContextStatement(pp8, pp) 
+
+    // Methods added by the compiler
+    override    func prototype -> Complexo {
+        @javacode{* return prototype;
+        *}
+    } 
+ @popCompilationContext(pp8) 
+ @pushCompilationContextStatement(new271, new) 
+    // Methods added by the compiler
+
+    override    func clone -> Complexo {
+        @javacode<<*
+        try {
+            return (_Complexo ) this.clone(); 
+        } catch (CloneNotSupportedException e) { }
+        return null;
+        *>>    } 
+
+    func new -> Complexo {
+         @javacode<**< 
+            return new _Complexo();         >**>
+    }
+
+    func new: ( Double p0, Double p1 ) -> Complexo {
+        @javacode<**< 
+            return new _Complexo(_p0, _p1);
+        >**>
+    }
+
+    func new: ( Double p0 ) -> Complexo {
+        @javacode<**< 
+            return new _Complexo(_p0);
+        >**>
+    }
+ @popCompilationContext(new271) 
+end

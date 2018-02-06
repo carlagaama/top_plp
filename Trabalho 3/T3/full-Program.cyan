@@ -1,0 +1,48 @@
+/*
+cd cyan
+saci.exe "C:\cyan\top-avancados-plp\T1\p.pyan" -cyanlang lib -javalib lib/javalib -args .\top-avancados-plp\T1\teste.txt
+*/
+
+package main
+import data
+import cyan.io
+
+object Program
+
+func run {
+	var String resultado = XML_Action toXML: Person("Isaac Newton", 24, City("Cambridge"))
+
+
+
+	OutTextFile
+       open: n"C:\cyan\top-avancados-plp\T3\resultado.txt"
+       write: resultado
+  	catch: CatchExceptionIOMessage;
+
+}
+ @pushCompilationContextStatement(pp3, pp) 
+
+    // Methods added by the compiler
+    override    func prototype -> Program {
+        @javacode{* return prototype;
+        *}
+    } 
+ @popCompilationContext(pp3) 
+ @pushCompilationContextStatement(new271, new) 
+    // Methods added by the compiler
+
+    override    func clone -> Program {
+        @javacode<<*
+        try {
+            return (_Program ) this.clone(); 
+        } catch (CloneNotSupportedException e) { }
+        return null;
+        *>>    } 
+    func init { } 
+
+    func new -> Program {
+        @javacode<**< 
+            return new _Program();        >**>
+    }
+ @popCompilationContext(new271) 
+end

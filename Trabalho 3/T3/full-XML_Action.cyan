@@ -1,0 +1,75 @@
+package data
+
+object XML_Action
+	func toXML: Any any -> String {
+    var String saida = "";
+    var String prot = "";
+    var Int ok = 0;
+        
+    //saida println;
+	for k in any featureList {
+        t println;
+        prot = "" ++ k value;
+        saida = "<" ++ k value ++ " prototype=\"" ++ (any prototypeName) ++ "\"> \n";
+        //saida println;
+    }
+
+    for t in any slotFeatureList {
+        printexpr t;
+        saida = saida ++ "  <" ++ t value ++ ">\n";
+        //saida println;
+        var String nome = t slotName;
+        var c = nome[0];
+        var String metodo = "get" ++ c toUpperCase ++ (nome substring: 1, (nome size));
+        if (any `metodo) isA: String {
+            saida = saida ++ "      \"" ++ any `metodo ++ "\"\n";
+            //saida = saida ++ "  <\\" ++ t value ++ ">\n\n";
+            //saida println;
+        } else if (any `metodo) isA: Int {
+            saida = saida ++ "      " ++ any `metodo ++ "\n";
+           // saida = saida ++ "  <\\" ++ t value ++ ">\n\n";
+            //saida println;
+        } else {
+            var String cu = XML_Action toXML: (any `metodo); 
+            saida = saida ++ cu;
+            ok = 1;
+            //saida = saida ++ "**<\\" ++  ++ ">\n";
+        }
+        saida = saida ++ "  <\\" ++ t value ++ ">\n\n";
+        //saida println;    
+    }
+    if ok == 1 {
+
+        saida println;
+    }
+
+    saida = saida ++ "**<\\" ++ prot ++ ">\n";
+
+	return saida;
+	}
+ @pushCompilationContextStatement(pp2, pp) 
+
+    // Methods added by the compiler
+    override    func prototype -> XML_Action {
+        @javacode{* return prototype;
+        *}
+    } 
+ @popCompilationContext(pp2) 
+ @pushCompilationContextStatement(new247, new) 
+    // Methods added by the compiler
+
+    override    func clone -> XML_Action {
+        @javacode<<*
+        try {
+            return (_XML__Action ) this.clone(); 
+        } catch (CloneNotSupportedException e) { }
+        return null;
+        *>>    } 
+    func init { } 
+
+    func new -> XML_Action {
+        @javacode<**< 
+            return new _XML__Action();        >**>
+    }
+ @popCompilationContext(new247) 
+end

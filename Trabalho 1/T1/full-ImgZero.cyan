@@ -1,0 +1,38 @@
+package excecao
+
+object ImgZero extends CyException
+// '@init(age)' creates a constructor with
+// parameter age
+  func init: Double d  {
+    _imaginario = d;
+  }
+  public Int imaginario
+ @pushCompilationContextStatement(pp10, pp) 
+
+    // Methods added by the compiler
+    override    func prototype -> ImgZero {
+        @javacode{* return prototype;
+        *}
+    } 
+ @popCompilationContext(pp10) 
+ @pushCompilationContextStatement(new273, new) 
+    // Methods added by the compiler
+
+    override    func clone -> ImgZero {
+        @javacode<<*
+        try {
+            return (_ImgZero ) this.clone(); 
+        } catch (CloneNotSupportedException e) { }
+        return null;
+        *>>    } 
+
+    func new: ( Double p0 ) -> ImgZero {
+        @javacode<**< 
+            return new _ImgZero(_p0);
+        >**>
+    }
+
+    public final func imaginario -> Int { return _imaginario }
+    private var Int _imaginario
+ @popCompilationContext(new273) 
+end

@@ -1,0 +1,8 @@
+package excecao
+
+object ImgZero extends CyException
+  func init: Double d  {
+    _imaginario = d;
+  }
+  public Double imaginario
+end

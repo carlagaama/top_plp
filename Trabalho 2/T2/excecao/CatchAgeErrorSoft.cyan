@@ -1,0 +1,13 @@
+package excecao
+import dados
+
+object CatchAgeErrorSoft
+	overload
+	func eval: IdadeNegativa msg {
+		Out println: "Idade ", msg getAge, " eh negativa."
+	}
+
+	func eval: IdadeInvalida msg {
+		Out println: "Idade ", msg getAge, " eh invalida."
+	}
+end

@@ -1,0 +1,40 @@
+package data
+
+object XML_Action
+	func toXML: Any any -> String {
+    var String saida = "";
+    var String prot = "";
+    var Int ok = 0;
+        
+	for k in any featureList {
+        k println;
+        prot = "" ++ k value;
+        saida = "<" ++ k value ++ " prototype=\"" ++ (any prototypeName) ++ "\"> \n";
+    }
+
+    for t in any slotFeatureList {
+        saida = saida ++ " <" ++ t value ++ ">\n";
+        var String nome = t slotName;
+        var c = nome[0];
+        var String metodo = "get" ++ c toUpperCase ++ (nome substring: 1, (nome size));
+        if (any `metodo) isA: String {
+            saida = saida ++ "      \"" ++ any `metodo ++ "\"\n";
+        } else if (any `metodo) isA: Int {
+            saida = saida ++ "      " ++ any `metodo ++ "\n";
+        } else {
+            var String cidade = XML_Action toXML: (any `metodo); 
+            saida = saida ++ cidade;
+            ok = 1;
+        }
+        saida = saida ++ "  <\\" ++ t value ++ ">\n";
+    }
+    if ok == 1 {
+        saida = saida ++ "<\\" ++ prot ++ ">\n";
+        saida println;
+    }
+
+    saida = saida ++ "<\\" ++ prot ++ ">\n";
+
+	return saida;
+	}
+end
